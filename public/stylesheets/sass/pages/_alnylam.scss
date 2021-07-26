@@ -1,30 +1,49 @@
 #alnylam{
-    background-color: #0099cc;
-  
-    a{
-      &::after{
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transform: scaleY(0);
-        transform-origin: left center;
-        background: black;
-        z-index: -1;
-        transition: 0.5s ease-out;
+  background-color: #0099cc;
+
+  .char {
+    animation-delay: var(--del);
+    animation-direction: var(--dir, normal);
+    animation-duration: var(--dur);
+    animation-iteration-count: var(--it, infinite);
+    animation-name: var(--name);
+    animation-timing-function: var(--tf);
+    animation-fill-mode: var(--fill, forwards);
+    display: inline-block;
+    position: relative;
+    transform-origin: 50% 100%;
+    z-index: 1;
+  }
+
+  .twirl {
+    &:hover {
+      .char {
+        --name: twirl;
+        --dur: 6000ms;
+        --del: calc(var(--char-index) * 0.025s);
+        --tf: linear;
       }
+    }
   
-      &:hover{
-        text-shadow: 3px 3px 0px black;
-        color: #62ADF2;
-        transition: 0.5s ease-out;
-        
-        &::after{
-          transform: scaleY(1);
-          opacity: 0;
-        }
+    @keyframes twirl {
+      2.5% {
+        transform: rotateY(1turn);
+      }
+      5% {
+        transform: rotateY(2turn);
+      }
+      10% {
+        transform: rotateY(3turn);
+      }
+      20% {
+        transform: rotateY(4turn);
+      }
+      40% {
+        transform: rotateY(5turn);
+      }
+      70%, 100% {
+        transform: rotateY(6turn);
       }
     }
   }
+}

@@ -7,6 +7,8 @@ $(document).ready(function() {
     800
   );
 
+  Splitting();
+
   var offset = 300;
 	var offset_opacity = 1300;
 	var scroll_top_duration = 700;
