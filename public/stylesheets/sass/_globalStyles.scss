@@ -20,6 +20,8 @@ a{
 .main-container{
   height: 100%;
   font-size: calc(1.3em + 2vw);
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
 
   @media screen and (min-width: 1200px){
     font-size: calc(45px + 0.08vw);
@@ -41,6 +43,7 @@ a{
 }
 
 .page{
+  scroll-snap-align: start;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
