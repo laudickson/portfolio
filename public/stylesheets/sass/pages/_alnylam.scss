@@ -5,10 +5,9 @@
     animation-delay: var(--del);
     animation-direction: var(--dir, normal);
     animation-duration: var(--dur);
-    animation-iteration-count: var(--it, infinite);
+    animation-iteration-count: infinite;
     animation-name: var(--name);
     animation-timing-function: var(--tf);
-    animation-fill-mode: var(--fill, forwards);
     display: inline-block;
     position: relative;
     transform-origin: 50% 100%;
@@ -19,7 +18,7 @@
     &:hover {
       .char {
         --name: twirl;
-        --dur: 6000ms;
+        --dur: 3000ms;
         --del: calc(var(--char-index) * 0.025s);
         --tf: linear;
       }
