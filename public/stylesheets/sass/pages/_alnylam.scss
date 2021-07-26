@@ -1,0 +1,30 @@
+#alnylam{
+    background-color: #0099cc;
+  
+    a{
+      &::after{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scaleY(0);
+        transform-origin: left center;
+        background: black;
+        z-index: -1;
+        transition: 0.5s ease-out;
+      }
+  
+      &:hover{
+        text-shadow: 3px 3px 0px black;
+        color: #62ADF2;
+        transition: 0.5s ease-out;
+        
+        &::after{
+          transform: scaleY(1);
+          opacity: 0;
+        }
+      }
+    }
+  }
