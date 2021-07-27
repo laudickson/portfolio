@@ -20,6 +20,8 @@ a{
 .main-container{
   height: 100%;
   font-size: calc(1.3em + 2vw);
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
 
   @media screen and (min-width: 1200px){
     font-size: calc(45px + 0.08vw);
@@ -28,10 +30,12 @@ a{
 
 .left-align-text{
   text-align: left;
+  padding-left: 60px;
 }
 
 .right-align-text{
   text-align: right;
+  padding-right: 60px;
 
   @media screen and (max-width: 500px){
     text-align: left;
@@ -39,6 +43,7 @@ a{
 }
 
 .page{
+  scroll-snap-align: start;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -73,6 +78,12 @@ a{
     a{
       color: black;
     }
+  }
+}
+
+.logo{
+  @media screen and (max-width:500px){
+    display: none;
   }
 }
 

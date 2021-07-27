@@ -1,0 +1,48 @@
+#alnylam{
+  background-color: #0099cc;
+
+  .char {
+    animation-delay: var(--del);
+    animation-direction: var(--dir, normal);
+    animation-duration: var(--dur);
+    animation-iteration-count: infinite;
+    animation-name: var(--name);
+    animation-timing-function: var(--tf);
+    display: inline-block;
+    position: relative;
+    transform-origin: 50% 100%;
+    z-index: 1;
+  }
+
+  .twirl {
+    &:hover {
+      .char {
+        --name: twirl;
+        --dur: 3000ms;
+        --del: calc(var(--char-index) * 0.025s);
+        --tf: linear;
+      }
+    }
+  
+    @keyframes twirl {
+      2.5% {
+        transform: rotateY(1turn);
+      }
+      5% {
+        transform: rotateY(2turn);
+      }
+      10% {
+        transform: rotateY(3turn);
+      }
+      20% {
+        transform: rotateY(4turn);
+      }
+      40% {
+        transform: rotateY(5turn);
+      }
+      70%, 100% {
+        transform: rotateY(6turn);
+      }
+    }
+  }
+}

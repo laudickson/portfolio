@@ -7,14 +7,16 @@ $(document).ready(function() {
     800
   );
 
+  Splitting();
+
   var offset = 300;
 	var offset_opacity = 1300;
-	var scroll_top_duration = 700;
+	var scroll_top_duration = 1000;
   var $back_to_top = $('.cd-top');
 
-	$(window).scroll(function(){
-		( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
-		if( $(this).scrollTop() > offset_opacity ) {
+	$('.main-container').scroll(function(){
+		( $('.main-container').scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+		if( $('.main-container').scrollTop() > offset_opacity ) {
 			$back_to_top.addClass('cd-fade-out');
 		}
 	});
@@ -22,7 +24,7 @@ $(document).ready(function() {
 	//smooth scroll to top
 	$back_to_top.on('click', function(event){
 		event.preventDefault();
-		$('body,html').animate({
+		$('.main-container').animate({
 			scrollTop: 0 ,
 		 	}, scroll_top_duration
 		);

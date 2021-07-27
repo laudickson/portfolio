@@ -9,24 +9,29 @@
     color: black;
     text-shadow: none;
 
-    &::before{
-      position: absolute;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      max-width: 0;
-      color: #fff;
-      content: attr(data-hover);
-      -webkit-transition: max-width 0.7s;
-         -moz-transition: max-width 0.7s;
-              transition: max-width 0.7s;
-      white-space: nowrap;
+    --opacity: 0.1;
+    --normal: 300;
+    --bold: 700;
+    --duration: 250ms;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  
+    &:hover .char {
+      opacity: var(--opacity);
+      font-variation-settings: "wght" var(--normal);
+      animation: step-sequence calc((var(--duration) / 1.5) * var(--char-total)) calc(var(--char-index) * calc(var(--duration) / 1.5)) steps(2, end) infinite;
     }
-
-    &:hover::before, &:focus::before{
-      max-width: 100%;
-      border-right: 2px solid #fff;
+  
+    @keyframes step-sequence {
+      0% {
+        opacity: 1;
+        transform: translateY(-2px);
+        font-variation-settings: "wght" var(--bold);
+      }
+      10%, 100% {
+        opacity: var(--opacity);
+        transform: translateY(0);
+        font-variation-settings: "wght" var(--normal);
+      }
     }
   }
-
 }

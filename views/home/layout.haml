@@ -10,14 +10,23 @@
 
     %link{rel: "stylesheet", type: 'text/css', href: "/stylesheets/home.css"}
     %link{rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css"}
+    %link{rel: "stylesheet", href: "https://unpkg.com/splitting/dist/splitting.css"}
+    
+    %script{src: "https://unpkg.com/splitting/dist/splitting.min.js"}
+    %script{src: "javascript/ga.min.js"}
+    %script{src: "javascript/jquery.min.js"}
+    %script{src: "javascript/typed.min.js"}
+    %script{src: "javascript/modernizr.min.js"}
+    %script{src: "javascript/lazysizes.min.js", async: true}
   %body
     #sideNav
-      .sticky-title.sticky-title-left{ data: { "0": "left: 140px;", "100p": "left: 80px;", "200p": "left: 20px;", "300p": "left: -40px;", "400p": "left: -100px;", "500p": "left: -160px;", "600p": "left: -220px;", "700p": "left: -280px;"}}
+      .sticky-title.sticky-title-left{ data: { "0": "left: 170px;", "100p": "left: 110px;", "200p": "left: 50px;", "300p": "left: -10px;", "400p": "left: -70px;", "500p": "left: -130px;", "600p": "left: -190px;", "700p": "left: -250px;", "800p": "left: -310px"}}
         %a.title.navLink{href: "#about"}about
-        %a.title.navLink{href: "#lately"}lately
-        %a.title.navLink{href: "#merger"}before
-        %a.title.navLink{href: "#levelup"}before pt.1
-        %a.title.navLink{href: "#past"}past
+        %a.title.navLink{href: '#alnylam'}bifxcodex
+        %a.title.navLink{href: "#rgg"}team bemo
+        %a.title.navLink{href: "#grubhub"}glubbleup
+        %a.title.navLink{href: "#levelup"}platypod
+        %a.title.navLink{href: "#amalgam"}dog days
         %a.title.navLink{href: "#launch"}origins
         %a.title.navLink{href: "#photography"}photography
         %a.title.navLink{href: "#contact"}contact
@@ -25,11 +34,6 @@
       = yield
 
     %a.cd-top.waves-effect.waves-red{href: "#0"}
-
-    %script{src: "javascript/lazysizes.min.js", async: true}
-    %script{src: "javascript/ga.min.js"}
-    %script{src: "javascript/jquery-3.3.1.min.js"}
-    %script{src: "javascript/typed.min.js"}
-    %script{src: "javascript/homesite.js"}
+    
     %script{src: "javascript/skrollr.min.js"}
-    %script{src: "javascript/modernizr.min.js"}
+    %script{src: "javascript/homesite.js"}
