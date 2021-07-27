@@ -1,6 +1,6 @@
 $(document).ready(function() {
   if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    var s = skrollr.init({forceHeight: false});
+    const s = skrollr.init({forceHeight: false});
   }
   setTimeout(function(){
     $('#sideNav').css('opacity',1)},
@@ -9,10 +9,10 @@ $(document).ready(function() {
 
   Splitting();
 
-  var offset = 300;
-	var offset_opacity = 1300;
-	var scroll_top_duration = 1000;
-  var $back_to_top = $('.cd-top');
+  const offset = 300;
+	const offset_opacity = 1300;
+	const scroll_top_duration = 1000;
+  const $back_to_top = $('.cd-top');
 
 	$('.main-container').scroll(function(){
 		( $('.main-container').scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
@@ -30,28 +30,27 @@ $(document).ready(function() {
 		);
 	});
 
-  var hellos = {
+  // hola bitches
+  const hellos = {
     strings: ["^1000Hello!", "你好!", "Salut!", "안녕!", "привет!", "Hola!", "नमस्ते!", "What's good?"]
   }
   $(".greeting").typed(hellos);
 
-  $('.title').on('click', function (){
-    var href = $(this).attr('href');
-    $('body, HTML').animate({
-      scrollTop: $(href).offset().top
-    }, 500);
+  $('.title').on('click', function () {
+    const href = $(this).attr('href');
+    document.querySelector(href).scrollIntoView({behavior: 'smooth', block: 'end'});
   });
 
   //automagick
-  var vis = ['adirondack','theroadgoeseveron','briana','reminiscent','bos','jzsmoke','sophie','butterfly','league','fouryears','sujit','ferrari','fanboy','lookup','ked','edemame','summerdreamin','nemo','painter','pumpkins','shoesoptional','parrot','castaway','jz2','fountain','roadtothetop','wesley','bigbeach','hocr','rain','pianokeys','statesswim','demboiz','packing','grandmaster','speared','mya','thomas','commave','bu'];
-  var invis = ['riho','bobert','bee','bronze','flower','georgelaughing','guru','josephnyc','karina','peekingred','tsdlau','pistachio','raspberrysnowman','justchillin','zenbonsakura','sarah','shadowlight','snowsalt','snowmiri','flowerA1','pumpkinsale','graduation','flowerA2','wendy','mokanero'];
+  const vis = ['adirondack','theroadgoeseveron','briana','reminiscent','bos','jzsmoke','sophie','butterfly','league','fouryears','sujit','ferrari','fanboy','lookup','ked','edemame','summerdreamin','nemo','painter','pumpkins','shoesoptional','parrot','castaway','jz2','fountain','roadtothetop','wesley','bigbeach','hocr','rain','pianokeys','statesswim','demboiz','packing','grandmaster','speared','mya','thomas','commave','bu'];
+  const invis = ['riho','bobert','bee','bronze','flower','georgelaughing','guru','josephnyc','karina','peekingred','tsdlau','pistachio','raspberrysnowman','justchillin','zenbonsakura','sarah','shadowlight','snowsalt','snowmiri','flowerA1','pumpkinsale','graduation','flowerA2','wendy','mokanero', 'moka2','sheep','kaylarado'];
 
   function automagick(){
-    var nextImage = Math.random().toFixed(5);
-    var vanish = vis[Math.floor(nextImage*vis.length)];
-    var vanishIndex = vis.indexOf(vanish);
-    var appear = invis[0];
-    var appearIndex=invis.indexOf(appear);
+    const nextImage = Math.random().toFixed(5);
+    const vanish = vis[Math.floor(nextImage*vis.length)];
+    const vanishIndex = vis.indexOf(vanish);
+    const appear = invis[0];
+    const appearIndex=invis.indexOf(appear);
 
     if (vanishIndex > -1){
       vis.splice(vanishIndex, 1);
@@ -64,8 +63,8 @@ $(document).ready(function() {
     vis.push(appear);
     invis.push(vanish);
 
-    var appearLeft = $('#'+vanish).css("left");
-    var appearTop = $('#'+vanish).css("top");
+    const appearLeft = $('#'+vanish).css("left");
+    const appearTop = $('#'+vanish).css("top");
 
     $('#'+appear).css({
       left: appearLeft,

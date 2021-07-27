@@ -13,13 +13,12 @@
       transform-origin: left center;
       background: black;
       z-index: -1;
-      transition: 0.5s ease-out;
     }
 
     &:hover{
-      text-shadow: 3px 3px 0px black;
+      text-shadow: 3px 3px 2px black;
       color: #9ad899;
-      transition: 0.5s ease-out;
+      transition: 0.3s ease;
       
       &::after{
         transform: scaleY(1);

@@ -60,26 +60,24 @@
     }
   }
 
-  .ruelala-link {
-    color: rgba(255, 48, 101, 1);
+  .ruelala-link, .gilt-link {
+    color: var(--color);
     text-shadow: none;
     opacity: .4;
-    transition: opacity 1s ease;
+    transition: all 1s ease;
 
     &:hover {
       opacity: 1;
+      text-shadow: 0 0 5px var(--color);
     }
   }
 
-  .gilt-link {
-    color: rgba(255, 180, 0, 1);
-    text-shadow: none;
-    opacity: .4;
-    transition: opacity 1s ease;
+  .ruelala-link {
+    --color: rgba(255, 48, 101, 1);
+  }
 
-    &:hover {
-      opacity: 1;
-    }
+  .gilt-link {
+    --color: rgba(255, 180, 0, 1);
   }
 
   .particles-circle-rue {
