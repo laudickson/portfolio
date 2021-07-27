@@ -1,57 +1,82 @@
 $(document).ready(function() {
-  if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    var s = skrollr.init({forceHeight: false});
+  Splitting();
+
+  const mainContainer = document.querySelector('.main-container');
+  const backToTop = document.querySelector('.cd-top');
+  const currentChapter = document.getElementById('current-chapter');
+  const sideNav = document.getElementById('sideNav');
+  let ticking = false;
+  
+  function getNormalizedScrollPos() {
+    return mainContainer.scrollTop * 100 / mainContainer.scrollHeight;
   }
-  setTimeout(function(){
-    $('#sideNav').css('opacity',1)},
+  function showScrollToTop() {
+    ( mainContainer.scrollTop > 300 ) ?
+        backToTop.classList.add('cd-is-visible') : backToTop.classList.remove('cd-is-visible', 'cd-fade-out');
+		if( $('.main-container').scrollTop > 1300 ) {
+			backToTop.classList.add('cd-fade-out');
+		}
+  }
+
+  function scrollCurrentChapter(scrollPos) {
+    currentChapter.style.transform = `rotate(270deg) translateY(calc(170px - ${scrollPos}%))`
+  }
+  
+  // fade in menu when document is loaded
+  setTimeout(function() {
+    sideNav.style.opacity = 1},
     800
   );
 
-  Splitting();
+  //optimized scroll event listener
+  mainContainer.addEventListener('scroll', function(e) {
+    normalizedScrollPos = getNormalizedScrollPos();
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        showScrollToTop();
+        scrollCurrentChapter(normalizedScrollPos);
+        ticking = false;
+      });
 
-  var offset = 300;
-	var offset_opacity = 1300;
-	var scroll_top_duration = 1000;
-  var $back_to_top = $('.cd-top');
+      ticking = true;
+    }
+  });
 
-	$('.main-container').scroll(function(){
-		( $('.main-container').scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
-		if( $('.main-container').scrollTop() > offset_opacity ) {
-			$back_to_top.addClass('cd-fade-out');
-		}
-	});
+  // scroll back to top invocation
+  backToTop.onclick = function toTheTop(e) {
+    e.preventDefault();
+    document.querySelector('#about').scrollIntoView();
+  }
 
-	//smooth scroll to top
-	$back_to_top.on('click', function(event){
-		event.preventDefault();
-		$('.main-container').animate({
-			scrollTop: 0 ,
-		 	}, scroll_top_duration
-		);
-	});
+  // ensure that current chapter moves out of way when menu is open
+  sideNav.addEventListener('mouseover', function(e) {
+    scrollCurrentChapter(5000);
+  }, false);
+  sideNav.addEventListener('mouseleave', function(e) {
+    scrollCurrentChapter(getNormalizedScrollPos())
+  }, false);
 
-  var hellos = {
+  // hola bitches
+  const hellos = {
     strings: ["^1000Hello!", "你好!", "Salut!", "안녕!", "привет!", "Hola!", "नमस्ते!", "What's good?"]
   }
   $(".greeting").typed(hellos);
 
-  $('.title').on('click', function (){
-    var href = $(this).attr('href');
-    $('body, HTML').animate({
-      scrollTop: $(href).offset().top
-    }, 500);
+  $('.title').on('click', function () {
+    const href = $(this).attr('href');
+    document.querySelector(href).scrollIntoView();
   });
 
   //automagick
-  var vis = ['adirondack','theroadgoeseveron','briana','reminiscent','bos','jzsmoke','sophie','butterfly','league','fouryears','sujit','ferrari','fanboy','lookup','ked','edemame','summerdreamin','nemo','painter','pumpkins','shoesoptional','parrot','castaway','jz2','fountain','roadtothetop','wesley','bigbeach','hocr','rain','pianokeys','statesswim','demboiz','packing','grandmaster','speared','mya','thomas','commave','bu'];
-  var invis = ['riho','bobert','bee','bronze','flower','georgelaughing','guru','josephnyc','karina','peekingred','tsdlau','pistachio','raspberrysnowman','justchillin','zenbonsakura','sarah','shadowlight','snowsalt','snowmiri','flowerA1','pumpkinsale','graduation','flowerA2','wendy','mokanero'];
+  const vis = ['adirondack','theroadgoeseveron','briana','reminiscent','bos','jzsmoke','sophie','butterfly','league','fouryears','sujit','ferrari','fanboy','lookup','ked','edemame','summerdreamin','nemo','painter','pumpkins','shoesoptional','parrot','castaway','jz2','fountain','roadtothetop','wesley','bigbeach','hocr','rain','pianokeys','statesswim','demboiz','packing','grandmaster','speared','mya','thomas','commave','bu'];
+  const invis = ['riho','bobert','bee','bronze','flower','georgelaughing','guru','josephnyc','karina','peekingred','tsdlau','pistachio','raspberrysnowman','justchillin','zenbonsakura','sarah','shadowlight','snowsalt','snowmiri','flowerA1','pumpkinsale','graduation','flowerA2','wendy','mokanero', 'moka2','sheep','kaylarado'];
 
   function automagick(){
-    var nextImage = Math.random().toFixed(5);
-    var vanish = vis[Math.floor(nextImage*vis.length)];
-    var vanishIndex = vis.indexOf(vanish);
-    var appear = invis[0];
-    var appearIndex=invis.indexOf(appear);
+    const nextImage = Math.random().toFixed(5);
+    const vanish = vis[Math.floor(nextImage*vis.length)];
+    const vanishIndex = vis.indexOf(vanish);
+    const appear = invis[0];
+    const appearIndex=invis.indexOf(appear);
 
     if (vanishIndex > -1){
       vis.splice(vanishIndex, 1);
@@ -64,8 +89,8 @@ $(document).ready(function() {
     vis.push(appear);
     invis.push(vanish);
 
-    var appearLeft = $('#'+vanish).css("left");
-    var appearTop = $('#'+vanish).css("top");
+    const appearLeft = $('#'+vanish).css("left");
+    const appearTop = $('#'+vanish).css("top");
 
     $('#'+appear).css({
       left: appearLeft,
