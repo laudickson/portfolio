@@ -1,27 +1,60 @@
 $(document).ready(function() {
   Splitting();
 
-  setTimeout(function(){
-    $('#sideNav').css('opacity',1)},
+  const mainContainer = document.querySelector('.main-container');
+  const backToTop = document.querySelector('.cd-top');
+  const currentChapter = document.getElementById('current-chapter');
+  const sideNav = document.getElementById('sideNav');
+  let ticking = false;
+  
+  function getNormalizedScrollPos() {
+    return mainContainer.scrollTop * 100 / mainContainer.scrollHeight;
+  }
+  function showScrollToTop() {
+    ( mainContainer.scrollTop > 300 ) ?
+        backToTop.classList.add('cd-is-visible') : backToTop.classList.remove('cd-is-visible', 'cd-fade-out');
+		if( $('.main-container').scrollTop > 1300 ) {
+			backToTop.classList.add('cd-fade-out');
+		}
+  }
+
+  function scrollCurrentChapter(scrollPos) {
+    currentChapter.style.transform = `rotate(270deg) translateY(calc(170px - ${scrollPos}%))`
+  }
+  
+  // fade in menu when document is loaded
+  setTimeout(function() {
+    sideNav.style.opacity = 1},
     800
   );
 
-  const $back_to_top = $('.cd-top');
-	$('.main-container').scroll(function(){
-		( $('.main-container').scrollTop() > 300 ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
-		if( $('.main-container').scrollTop() > 1300 ) {
-			$back_to_top.addClass('cd-fade-out');
-		}
-	});
+  //optimized scroll event listener
+  mainContainer.addEventListener('scroll', function(e) {
+    normalizedScrollPos = getNormalizedScrollPos();
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        showScrollToTop();
+        scrollCurrentChapter(normalizedScrollPos);
+        ticking = false;
+      });
 
-	//smooth scroll to top
-	$back_to_top.on('click', function(event){
-		event.preventDefault();
-		$('.main-container').animate({
-			scrollTop: 0 ,
-		 	}, 1000
-		);
-	});
+      ticking = true;
+    }
+  });
+
+  // scroll back to top invocation
+  backToTop.onclick = function toTheTop(e) {
+    e.preventDefault();
+    document.querySelector('#about').scrollIntoView();
+  }
+
+  // ensure that current chapter moves out of way when menu is open
+  sideNav.addEventListener('mouseover', function(e) {
+    scrollCurrentChapter(5000);
+  }, false);
+  sideNav.addEventListener('mouseleave', function(e) {
+    scrollCurrentChapter(getNormalizedScrollPos())
+  }, false);
 
   // hola bitches
   const hellos = {
@@ -31,7 +64,7 @@ $(document).ready(function() {
 
   $('.title').on('click', function () {
     const href = $(this).attr('href');
-    document.querySelector(href).scrollIntoView({behavior: 'smooth', block: 'end'});
+    document.querySelector(href).scrollIntoView();
   });
 
   //automagick
@@ -77,7 +110,7 @@ $(document).ready(function() {
         magicks();
       });
 
-      console.log(appear); //names of photos, as they appear
+      // console.log(appear); //names of photos, as they appear
     setTimeout(automagick, 1500);
   }
   automagick();
