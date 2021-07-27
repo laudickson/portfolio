@@ -20,7 +20,7 @@ a{
 .main-container{
   height: 100%;
   font-size: calc(1.3em + 2vw);
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   overflow-y: scroll;
 
   @media screen and (min-width: 1200px){
