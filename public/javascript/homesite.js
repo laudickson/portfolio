@@ -110,7 +110,7 @@ $(document).ready(function() {
         magicks();
       });
 
-      // console.log(appear); //names of photos, as they appear
+      console.log(appear); //names of photos, as they appear
     setTimeout(automagick, 1500);
   }
   automagick();
