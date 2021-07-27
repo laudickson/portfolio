@@ -21,19 +21,28 @@
   %body
     #sideNav
       .chapters
-        %a.title.navLink{href: "#about"}about
-        %a.title.navLink{href: '#alnylam'}bifxcodex
-        %a.title.navLink{href: "#rgg"}team bemo
-        %a.title.navLink{href: "#grubhub"}glubbleup
-        %a.title.navLink{href: "#levelup"}platypod
-        %a.title.navLink{href: "#amalgam"}dog days
-        %a.title.navLink{href: "#launch"}origins
-        %a.title.navLink{href: "#photography"}photography
-        %a.title.navLink{href: "#contact"}contact
+        %a.title{href: "#about"}about
+        %a.title{href: '#alnylam'}bifxcodex
+        %a.title{href: "#rgg"}team bemo
+        %a.title{href: "#grubhub"}glubbleup
+        %a.title{href: "#levelup"}platypod
+        %a.title{href: "#amalgam"}dog days
+        %a.title{href: "#launch"}origins
+        %a.title{href: "#photography"}photography
+        %a.title{href: "#contact"}contact
+      .current-chapter
+        %span about
+        %span bifxcodex
+        %span team bemo
+        %span glubbleup
+        %span platypod
+        %span dog days
+        %span origins
+        %span photography
+        %span contact
     .main-container
       = yield
 
     %a.cd-top.waves-effect.waves-red{href: "#0"}
-    
-    %script{src: "javascript/skrollr.min.js"}
+
     %script{src: "javascript/homesite.js"}
