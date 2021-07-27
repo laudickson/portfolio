@@ -21,6 +21,9 @@
         --dur: 3000ms;
         --del: calc(var(--char-index) * 0.025s);
         --tf: linear;
+        &:hover {
+          color: white;
+        }
       }
       color: black;
       transition: color 900ms ease-out;
