@@ -4,7 +4,7 @@ ruby '2.5.9'
 
 gem 'activesupport', '~> 5.2'
 gem 'hamlit', '~> 2.8'
-gem 'puma', '~> 4.3.8'
+gem 'puma', '~> 4.3.11'
 gem 'sass', '~> 3.6'
 gem 'sinatra', '~> 2.0'
 
