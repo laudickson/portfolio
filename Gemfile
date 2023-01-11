@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.5.9'
+ruby '3.2.0'
 
 gem 'activesupport', '~> 5.2'
 gem 'hamlit', '~> 2.8'
