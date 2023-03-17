@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby '3.2.0'
 
-gem 'activesupport', '~> 5.2'
+gem 'activesupport', '~> 6.1'
 gem 'hamlit', '~> 2.8'
 gem 'puma', '~> 4.3.8'
 gem 'sass', '~> 3.6'
