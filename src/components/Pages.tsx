@@ -80,7 +80,7 @@ export const Alnylam = () => {
       <BlackText className='right'>
         I&#39;ve made a return to biotech, working at <Twirl link='http://alnylam.com' word='Alnylam' /> to build internal tools for research and development.
       </BlackText>
-      <Logo src='/images/logos/Alnylam.png' alt="Alnylam" />
+      <Logo src={ process.env.PUBLIC_URL + '/images/logos/Alnylam.png' } alt="Alnylam" />
     </Page>
   );
 };
@@ -90,7 +90,7 @@ export const RGG = () => {
 
   return (
     <Page pageId={ pageId } key={ `${pageId}_page` }>
-      <Logo src='/images/logos/RueGiltGroupe.png' alt='RGG' />
+      <Logo src={ process.env.PUBLIC_URL + '/images/logos/RueGiltGroupe.png' } alt='RGG' />
       <WhiteText className='left'>
         Before that I was with <Shine href='http://www.ruegiltgroupe.com/'>Rue Gilt Groupe</Shine> cranking out countless of features for <Bubbles link='https://www.ruelala.com/' word='Rue La La' color='#FF3065' bubbleColor='#D64066B3'/> and <Bubbles link='https://www.gilt.com/' word='Gilt' color='#FFB400' bubbleColor='#E1B95BB3'/>
       </WhiteText>
@@ -107,7 +107,7 @@ export const Grubhub = () => {
       <BlackText className='right'>
         And even prior to that, I was a part of <Chomp link='https://www.grubhub.com' word='Grubhub' color={ theme.colors.pages.grubhub }/> for a brief time during an acquisition of a smaller company.
       </BlackText>
-    <Logo src='/images/logos/Grubhub.png' alt='Grubhub' />
+    <Logo src={ process.env.PUBLIC_URL + '/images/logos/Grubhub.png' } alt='Grubhub' />
     </Page>
   );
 };
@@ -117,7 +117,7 @@ export const LevelUp = () => {
 
   return (
     <Page pageId={ pageId } key={ `${pageId}_page` }>
-      <Logo src='/images/logos/LevelUp.png' alt='LevelUp' />
+      <Logo src={ process.env.PUBLIC_URL + '/images/logos/LevelUp.png' } alt='LevelUp' />
       <WhiteText className='left'>
         That mighty company was called <LetterPop link='https://www.thelevelup.com/' word='LevelUp' /> where I spent a good amount of time writing Ruby on Rails.
       </WhiteText>
@@ -133,7 +133,7 @@ export const Amalgam = () => {
       <BlackText className='right'>
         Many, many summers ago, I had a brief stint at <Dang link='http://amalgam.co' word='Amalgam' color={ theme.colors.pages.amalgam }/> constructing websites from concepts.
       </BlackText>
-      <Logo src='/images/logos/Amalgam.png' alt='Amalgam' />
+      <Logo src={ process.env.PUBLIC_URL + '/images/logos/Amalgam.png' } alt='Amalgam' />
     </Page>
   );
 };
@@ -143,7 +143,7 @@ export const Launch = () => {
 
   return (
     <Page pageId={ pageId } key={ `${pageId}_page` }>
-      <Logo src='/images/logos/Launch.png' alt='Launch' />
+      <Logo src={ process.env.PUBLIC_URL + '/images/logos/Launch.png' } alt='Launch' />
       <WhiteText className='left'>
         But really, this all started with the incredible experience at the <Typing link='https://www.launchacademy.com' word='coding bootcamp' /> that I attended.
       </WhiteText>
