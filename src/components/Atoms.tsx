@@ -21,14 +21,10 @@ export const Logo = styled.img`
   }
 
   &:hover {
-    animation: grow .4s ease forwards;
+    transform: scale(1.3);
+    transition: .4s ease-in-out;
   }
-
-  @keyframes grow {
-    100% {
-      transform: scale(1.3);
-    }
-  }
+  transition: .2s ease-in-out;
 `;
 
 export const Link = styled.a`
