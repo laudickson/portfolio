@@ -16,15 +16,19 @@ const StyledPage = styled.div<{ background: ChapterIds }>`
 `;
 
 export const Logo = styled.img`
-   &:hover {
-    animation: grow .4s ease forwards;
-   }
+  @media screen and (max-width:500px) {
+    display: none;
+  }
 
-   @keyframes grow {
+  &:hover {
+    animation: grow .4s ease forwards;
+  }
+
+  @keyframes grow {
     100% {
       transform: scale(1.3);
     }
-   }
+  }
 `;
 
 export const Link = styled.a`
@@ -49,16 +53,22 @@ const Text = styled.div`
   }
 
   &.right {
-    text-align: right;
-    margin-right: 60px;
+    @media screen and (min-width:500px) {
+      text-align: right;
+      margin-right: 60px;
+    }
   }
 
   &.left {
-    margin-left: 60px;
+    @media screen and (min-width:500px) {
+      margin-left: 60px;
+    }
   }
 
   &.center-text {
-    text-align: center;
+    @media screen and (min-width:500px) {
+      text-align: center;
+    }
   }
 
   &.text-shadow {

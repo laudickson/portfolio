@@ -18,6 +18,10 @@ interface Bubbly {
 }
 
 export const Headshot = styled.div<{ img: string; appear: boolean; popOut: boolean; popIn: boolean; }>`
+  @media screen and (max-width:500px) {
+    display: none;
+  }
+
   height: 80%;
   width: 30%;
   margin-right: 16px;

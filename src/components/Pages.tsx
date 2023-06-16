@@ -184,6 +184,10 @@ const ContactContainer = styled.div`
   display: flex;
   width: 50%;
   justify-content: space-between;
+  @media screen and (max-width:500px) {
+    flex-direction: column;
+    gap: 36px;
+  }
 
   a {
     position: relative;

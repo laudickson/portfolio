@@ -25,6 +25,10 @@ const Veil = styled.div<{ color: string }>`
   z-index: 1;
   background-color: ${props => props.color};
   opacity: 0.42;
+
+  @media screen and (max-width:500px) {
+    left: 0;
+  }
 `;
 
 export const Automagick = () => {
