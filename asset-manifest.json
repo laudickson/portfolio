@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/static/js/main.cb20ad73.js",
+    "main.js": "/static/js/main.3ec38a82.js",
     "static/media/about.jpg": "/static/media/about.ac795f893a3137484b11.jpg",
     "static/media/the_road_goes_ever_on.jpg": "/static/media/the_road_goes_ever_on.6cf65a074daba1594054.jpg",
     "static/media/snowsalt.jpg": "/static/media/snowsalt.d783956a139b3f37f5d6.jpg",
@@ -73,9 +73,9 @@
     "static/media/mokanero.jpg": "/static/media/mokanero.ae61f6ce1797f8f427b5.jpg",
     "static/media/snowmiri.jpg": "/static/media/snowmiri.12c2a0f417d4711c58c2.jpg",
     "index.html": "/index.html",
-    "main.cb20ad73.js.map": "/static/js/main.cb20ad73.js.map"
+    "main.3ec38a82.js.map": "/static/js/main.3ec38a82.js.map"
   },
   "entrypoints": [
-    "static/js/main.cb20ad73.js"
+    "static/js/main.3ec38a82.js"
   ]
 }
