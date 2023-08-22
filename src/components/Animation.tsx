@@ -69,11 +69,8 @@ export const Headshot = styled.div<{ img: string; appear: boolean; popOut: boole
 `;
 
 const TwirlWord = styled(Link)`
-transition: color .3s ease-in;
-
-  &:visited {
-    color: white;
-  }
+  transition: color .3s ease-in;
+  color: white;
 
   &:hover {
     color: black;

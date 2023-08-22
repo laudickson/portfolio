@@ -6,4 +6,6 @@ reborn as a react application on typescript. ruby will still always have a dear 
 
 [check it out](https://laudickson.com)
 
-note to devs: after bundling, use `shotgun` to spin up locally. `ruby server.rb` will ignore `config.ru`
+~~note to devs: after bundling, use `shotgun` to spin up locally. `ruby server.rb` will ignore `config.ru`~~
+
+install dependancies with ye olde `npm install` and spin up with `npm start`
