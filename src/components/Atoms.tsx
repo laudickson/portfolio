@@ -32,14 +32,23 @@ export const Link = styled.a`
 `;
 
 const Text = styled.div`
-    display: inline;
-    flex-direction: column;
-    width: 30%;
-    max-width: 600px;
+    display: block;
+    width: 40%;
+    max-width: 800px;
     min-width: 320px;
-    line-height: 120%;
+    line-height: 160%;
     white-space: pre-line;
     z-index: 2;
+
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    margin: 20px;
 
     .typed-span {
         font-size: 1.3em;

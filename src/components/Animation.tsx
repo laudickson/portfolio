@@ -353,7 +353,7 @@ const ChompLink = styled(Link)<{ color: string }>`
     }
 `;
 
-export const Chomp = ({ link, word, color }: Link) => {
+export const Chomp = ({ link, word, color, toothColor }: Link & { toothColor?: string }) => {
     const bites = [...Array.from({ length: 5 }, (_, i) => i + 1)];
     const [bite, setBite] = React.useState(false);
 
@@ -361,19 +361,19 @@ export const Chomp = ({ link, word, color }: Link) => {
         <ChompContainer onMouseEnter={() => setBite(true)} onMouseLeave={() => setBite(false)}>
             {bite && (
                 <>
-                    <Bite color={color ?? ''} x={1} y={-3} rot={323} eat={500}>
+                    <Bite color={toothColor ?? color ?? ''} x={-4} y={1} rot={323} eat={500}>
                         {bites.map((bite) => (
-                            <Tooth key={Math.random()} className={`bite${bite}`} color={color ?? ''} />
+                            <Tooth key={Math.random()} className={`bite${bite}`} color={toothColor ?? color ?? ''} />
                         ))}
                     </Bite>
-                    <Bite color={color ?? ''} x={154} y={6} rot={51} eat={750}>
+                    <Bite color={toothColor ?? color ?? ''} x={170} y={4} rot={51} eat={750}>
                         {bites.map((bite) => (
-                            <Tooth key={Math.random()} className={`bite${bite}`} color={color ?? ''} />
+                            <Tooth key={Math.random()} className={`bite${bite}`} color={toothColor ?? color ?? ''} />
                         ))}
                     </Bite>
-                    <Bite color={color ?? ''} x={87} y={43} rot={171} eat={1200}>
+                    <Bite color={toothColor ?? color ?? ''} x={87} y={60} rot={171} eat={1200}>
                         {bites.map((bite) => (
-                            <Tooth key={Math.random()} className={`bite${bite}`} color={color ?? ''} />
+                            <Tooth key={Math.random()} className={`bite${bite}`} color={toothColor ?? color ?? ''} />
                         ))}
                     </Bite>
                 </>

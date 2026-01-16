@@ -10,6 +10,8 @@ import { Automagick } from './Automagick';
 
 const AboutText = styled(BlackText)`
     display: flex;
+    width: 600px;
+    max-width: 90vw;
 `;
 
 const helloStrings: string[] = [
@@ -66,10 +68,14 @@ export const About = () => {
                 }}
                 className={headshotLoad ? 'loaded' : ''}
             />
-            <AboutText>
-                <HelloBlob morphTime={1} cooldownTime={0.75} strings={helloStrings} />
-                My name is Dickson Lau and I&#39;m a software developer from the proud city of Boston.
-            </AboutText>
+            <div style={{ display: 'flex', flexDirection: 'column', zIndex: 2 }}>
+                <div style={{ paddingLeft: '32px', marginBottom: '-60px' }}>
+                    <HelloBlob morphTime={1} cooldownTime={0.75} strings={helloStrings} />
+                </div>
+                <AboutText>
+                    My name is Dickson Lau and I&#39;m a software developer from the proud city of Boston.
+                </AboutText>
+            </div>
         </Page>
     );
 };
@@ -112,8 +118,13 @@ export const Grubhub = () => {
         <Page pageId={pageId} key={`${pageId}_page`}>
             <BlackText className="right">
                 And even prior to that, I was a part of{' '}
-                <Chomp link="https://www.grubhub.com" word="Grubhub" color={theme.colors.pages.grubhub} /> for a brief
-                time during an acquisition of a smaller company.
+                <Chomp
+                    link="https://www.grubhub.com"
+                    word="Grubhub"
+                    color={theme.colors.pages.grubhub}
+                    toothColor="#F44956"
+                />{' '}
+                for a brief time during an acquisition of a smaller company.
             </BlackText>
             <Logo src={process.env.PUBLIC_URL + '/images/logos/Grubhub.png'} alt="Grubhub" />
         </Page>
