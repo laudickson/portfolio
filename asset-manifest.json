@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/static/js/main.573de69a.js",
+    "main.js": "/static/js/main.efe27b0a.js",
     "static/media/about.jpg": "/static/media/about.ac795f893a3137484b11.jpg",
     "static/media/the_road_goes_ever_on.jpg": "/static/media/the_road_goes_ever_on.6cf65a074daba1594054.jpg",
     "static/media/snowsalt.jpg": "/static/media/snowsalt.d783956a139b3f37f5d6.jpg",
@@ -20,7 +20,6 @@
     "static/media/road_to_the_top.jpg": "/static/media/road_to_the_top.e8c5663978d217bc044f.jpg",
     "static/media/pumpkins.jpg": "/static/media/pumpkins.19574e1f00629f9b5d3b.jpg",
     "static/media/bronze.jpg": "/static/media/bronze.fc6710d179f6d8f5ed33.jpg",
-    "static/media/QuattrocentoSansRegular.ttf": "/static/media/QuattrocentoSansRegular.c2e444fd4e26b791b257.ttf",
     "static/media/nemo.jpg": "/static/media/nemo.5cfc929afdca2a9d76ca.jpg",
     "static/media/comm_ave.jpg": "/static/media/comm_ave.d082844bb9341b97a2f7.jpg",
     "static/media/peeking_red.jpg": "/static/media/peeking_red.09253224cccb1e77f94b.jpg",
@@ -73,9 +72,9 @@
     "static/media/mokanero.jpg": "/static/media/mokanero.ae61f6ce1797f8f427b5.jpg",
     "static/media/snowmiri.jpg": "/static/media/snowmiri.12c2a0f417d4711c58c2.jpg",
     "index.html": "/index.html",
-    "main.573de69a.js.map": "/static/js/main.573de69a.js.map"
+    "main.efe27b0a.js.map": "/static/js/main.efe27b0a.js.map"
   },
   "entrypoints": [
-    "static/js/main.573de69a.js"
+    "static/js/main.efe27b0a.js"
   ]
 }
