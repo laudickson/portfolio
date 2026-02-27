@@ -5,7 +5,7 @@ import { HelloBlob } from './HelloBlob';
 import headshot from '../images/about.jpg';
 import { Bubbles, Shine, Headshot, Twirl, Chomp, LetterPop, Dang, Typing, FocusLens } from './Animation';
 import { BlackText, WhiteText, Page, Logo, darkGlass, brightGlass } from './Atoms';
-import { useTheme } from '@emotion/react';
+import { keyframes, useTheme } from '@emotion/react';
 import { Automagick } from './Automagick';
 
 const AboutText = styled(BlackText)`
@@ -17,6 +17,74 @@ const AboutText = styled(BlackText)`
 
 const RGGText = styled(WhiteText)`
     ${brightGlass}
+`;
+
+const glowPulse = keyframes`
+    0%, 100% { filter: drop-shadow(0 0 4px rgb(255, 255, 255)); }
+    50% { filter: drop-shadow(0 0 50px rgb(44, 44, 44)) drop-shadow(0 0 20px rgba(245, 245, 255, 1)); }
+`;
+
+const jelly = keyframes`
+    0% { transform: scale(1, 1); }
+    25% { transform: scale(0.92, 1.08); }
+    50% { transform: scale(1.08, 0.92); }
+    75% { transform: scale(0.97, 1.03); }
+    100% { transform: scale(1, 1); }
+`;
+
+const floatBob = keyframes`
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+`;
+
+const AlnylamLogo = styled(Logo)`
+    &:hover {
+        animation: ${glowPulse} 1.5s ease infinite;
+    }
+`;
+
+const warpStreak = keyframes`
+    0% { transform: scaleX(1) translateX(0); filter: blur(0) brightness(1); }
+    30% { transform: scaleX(1.6) translateX(8px); filter: blur(4px) brightness(1.8); }
+    60% { transform: scaleX(1.6) translateX(-8px); filter: blur(4px) brightness(1.8); }
+    100% { transform: scaleX(1) translateX(0); filter: blur(0) brightness(1); }
+`;
+
+const RGGLogo = styled(Logo)`
+    &:hover {
+        animation: ${warpStreak} 0.5s ease-out;
+    }
+`;
+
+const GrubhubLogo = styled(Logo)`
+    &:hover {
+        animation: ${jelly} 0.6s ease;
+    }
+`;
+
+const LevelUpLogo = styled(Logo)`
+    &:hover {
+        transform: rotateY(360deg);
+        transition: transform 0.6s ease;
+    }
+`;
+
+const spinGrow = keyframes`
+    0% { transform: rotate(0deg) scale(1); }
+    70% { transform: rotate(360deg) scale(1); }
+    100% { transform: rotate(360deg) scale(1.3); }
+`;
+
+const AmalgamLogo = styled(Logo)`
+    &:hover {
+        animation: ${spinGrow} 0.8s ease-out forwards;
+    }
+`;
+
+const LaunchLogo = styled(Logo)`
+    &:hover {
+        animation: ${floatBob} 1s ease-in-out infinite;
+    }
 `;
 
 const helloStrings: string[] = [
@@ -94,7 +162,7 @@ export const Alnylam = () => {
                 I&#39;ve made a return to biotech, working at <Twirl link="http://alnylam.com" word="Alnylam" /> to
                 build internal tools for research and development.
             </BlackText>
-            <Logo src={process.env.PUBLIC_URL + '/images/logos/Alnylam.png'} alt="Alnylam" />
+            <AlnylamLogo src={process.env.PUBLIC_URL + '/images/logos/Alnylam.png'} alt="Alnylam" />
         </Page>
     );
 };
@@ -104,7 +172,7 @@ export const RGG = () => {
 
     return (
         <Page pageId={pageId} key={`${pageId}_page`}>
-            <Logo src={process.env.PUBLIC_URL + '/images/logos/RueGiltGroupe.png'} alt="RGG" />
+            <RGGLogo src={process.env.PUBLIC_URL + '/images/logos/RueGiltGroupe.png'} alt="RGG" />
             <RGGText className="left">
                 Before that I was with <Shine href="http://www.ruegiltgroupe.com/">Rue Gilt Groupe</Shine> cranking out
                 countless of features for{' '}
@@ -131,7 +199,7 @@ export const Grubhub = () => {
                 />{' '}
                 for a brief time during an acquisition of a smaller company.
             </BlackText>
-            <Logo src={process.env.PUBLIC_URL + '/images/logos/Grubhub.png'} alt="Grubhub" />
+            <GrubhubLogo src={process.env.PUBLIC_URL + '/images/logos/Grubhub.png'} alt="Grubhub" />
         </Page>
     );
 };
@@ -141,7 +209,7 @@ export const LevelUp = () => {
 
     return (
         <Page pageId={pageId} key={`${pageId}_page`}>
-            <Logo src={process.env.PUBLIC_URL + '/images/logos/LevelUp.png'} alt="LevelUp" />
+            <LevelUpLogo src={process.env.PUBLIC_URL + '/images/logos/LevelUp.png'} alt="LevelUp" />
             <WhiteText className="left">
                 That mighty company was called <LetterPop link="https://www.thelevelup.com/" word="LevelUp" /> where I
                 spent a good amount of time writing Ruby on Rails.
@@ -160,7 +228,7 @@ export const Amalgam = () => {
                 <Dang link="http://amalgam.co" word="Amalgam" color={theme.colors.pages.amalgam} /> constructing
                 websites from concepts.
             </BlackText>
-            <Logo src={process.env.PUBLIC_URL + '/images/logos/Amalgam.png'} alt="Amalgam" />
+            <AmalgamLogo src={process.env.PUBLIC_URL + '/images/logos/Amalgam.png'} alt="Amalgam" />
         </Page>
     );
 };
@@ -170,7 +238,7 @@ export const Launch = () => {
 
     return (
         <Page pageId={pageId} key={`${pageId}_page`}>
-            <Logo src={process.env.PUBLIC_URL + '/images/logos/Launch.png'} alt="Launch" />
+            <LaunchLogo src={process.env.PUBLIC_URL + '/images/logos/Launch.png'} alt="Launch" />
             <WhiteText className="left">
                 But really, this all started with the incredible experience at the{' '}
                 <Typing link="https://www.launchacademy.com" word="coding bootcamp" /> that I attended.

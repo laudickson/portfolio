@@ -20,12 +20,7 @@ export const Logo = styled.img`
     @media screen and (max-width: 500px) {
         display: none;
     }
-
-    &:hover {
-        transform: scale(1.3);
-        transition: 0.4s ease-in-out;
-    }
-    transition: 0.2s ease-in-out;
+    transition: 0.3s ease-out;
 `;
 
 export const Link = styled.a`
@@ -96,7 +91,6 @@ const StyledText = styled.div`
             inset 0 -1px 0 0 rgba(0, 0, 0, 0.05);
     }
 
-    /* Shine sweep overlay */
     &::after {
         content: '';
         position: absolute;
@@ -143,7 +137,6 @@ const StyledText = styled.div`
         animation: ${shineUp} 0.3s ease;
     }
 
-    /* Noise texture overlay */
     &::before {
         content: '';
         position: absolute;
@@ -187,7 +180,7 @@ const StyledText = styled.div`
     }
 `;
 
-const TILT_MAX = 10; // max degrees of rotation
+const TILT_MAX = 10;
 
 const Text = React.forwardRef<HTMLDivElement, React.ComponentProps<typeof StyledText>>(function Text(
     { onMouseEnter, onMouseMove, onMouseLeave, onAnimationEnd, ...props },
@@ -200,7 +193,7 @@ const Text = React.forwardRef<HTMLDivElement, React.ComponentProps<typeof Styled
             const el = innerRef.current;
             if (!el) return;
             const rect = el.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
             const y = (e.clientY - rect.top) / rect.height - 0.5;
             el.style.transform = `perspective(800px) rotateX(${-y * TILT_MAX}deg) rotateY(${x * TILT_MAX}deg)`;
             onMouseMove?.(e);
@@ -248,7 +241,6 @@ export const WhiteText = styled(Text)`
     color: white;
 `;
 
-/** Glass overrides for light (white) backgrounds — dark tinted glass */
 export const darkGlass = css`
     background-color: rgba(182, 182, 182, 0.1);
     border-top: 1px solid rgba(255, 255, 255, 0.45);
@@ -282,7 +274,6 @@ export const darkGlass = css`
     }
 `;
 
-/** Glass overrides for dark (black) backgrounds — brighter glass edges */
 export const brightGlass = css`
     background-color: rgb(119, 119, 119, 0.08);
     border-top: 1px solid rgba(0, 0, 0, 0.12);
