@@ -58,9 +58,11 @@ const Text = styled.div`
         inset 0 -1px 0 0 rgba(0, 0, 0, 0.05);
     margin: 20px;
     transition:
-        transform 0.3s ease,
+        transform 0.7s ease,
         box-shadow 0.3s ease,
         background-color 0.3s ease;
+
+    overflow: hidden;
 
     &:hover {
         transform: scale(1.02);
@@ -69,15 +71,30 @@ const Text = styled.div`
             0 12px 40px 0 rgba(0, 0, 0, 0.2),
             inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
             inset 0 -1px 0 0 rgba(0, 0, 0, 0.05);
+
+        &::after {
+            transform: translateX(100%);
+        }
     }
 
-    /* Gradient sheen overlay */
+    /* Shine sweep overlay */
     &::after {
         content: '';
         position: absolute;
         inset: 0;
         border-radius: inherit;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
+        background: linear-gradient(
+            120deg,
+            transparent 0%,
+            transparent 30%,
+            rgba(255, 255, 255, 0.25) 45%,
+            rgba(255, 255, 255, 0.4) 50%,
+            rgba(255, 255, 255, 0.25) 55%,
+            transparent 70%,
+            transparent 100%
+        );
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
         pointer-events: none;
     }
 
@@ -154,7 +171,16 @@ export const darkGlass = css`
     }
 
     &::after {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 100%);
+        background: linear-gradient(
+            120deg,
+            transparent 0%,
+            transparent 30%,
+            rgba(0, 0, 0, 0.08) 45%,
+            rgba(0, 0, 0, 0.15) 50%,
+            rgba(0, 0, 0, 0.08) 55%,
+            transparent 70%,
+            transparent 100%
+        );
     }
 `;
 
@@ -179,7 +205,16 @@ export const brightGlass = css`
     }
 
     &::after {
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.04) 0%, transparent 100%);
+        background: linear-gradient(
+            120deg,
+            transparent 0%,
+            transparent 30%,
+            rgba(255, 255, 255, 0.15) 45%,
+            rgba(255, 255, 255, 0.25) 50%,
+            rgba(255, 255, 255, 0.15) 55%,
+            transparent 70%,
+            transparent 100%
+        );
     }
 `;
 
