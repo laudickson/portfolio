@@ -59,7 +59,7 @@ const StyledText = styled.div`
     display: block;
     width: 40%;
     max-width: 800px;
-    min-width: 320px;
+    min-width: min(320px, calc(100% - 40px));
     line-height: 160%;
     white-space: pre-line;
     z-index: 2;
@@ -80,14 +80,15 @@ const StyledText = styled.div`
         inset 0 -1px 0 0 rgba(0, 0, 0, 0.05);
     margin: 20px;
     transition:
-        transform 0.7s ease,
+        transform 0.3s ease-out,
         box-shadow 0.3s ease,
         background-color 0.3s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
 
     overflow: hidden;
 
     &:hover {
-        transform: scale(1.02);
         background-color: rgba(255, 255, 255, 0.15);
         box-shadow:
             0 12px 40px 0 rgba(0, 0, 0, 0.2),
@@ -186,19 +187,51 @@ const StyledText = styled.div`
     }
 `;
 
+const TILT_MAX = 10; // max degrees of rotation
+
 const Text = React.forwardRef<HTMLDivElement, React.ComponentProps<typeof StyledText>>(function Text(
-    { onMouseEnter, onAnimationEnd, ...props },
+    { onMouseEnter, onMouseMove, onMouseLeave, onAnimationEnd, ...props },
     ref
 ) {
+    const innerRef = React.useRef<HTMLDivElement>(null);
+
+    const handleMouseMove = React.useCallback(
+        (e: React.MouseEvent<HTMLDivElement>) => {
+            const el = innerRef.current;
+            if (!el) return;
+            const rect = el.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            el.style.transform = `perspective(800px) rotateX(${-y * TILT_MAX}deg) rotateY(${x * TILT_MAX}deg)`;
+            onMouseMove?.(e);
+        },
+        [onMouseMove]
+    );
+
+    const handleMouseLeave = React.useCallback(
+        (e: React.MouseEvent<HTMLDivElement>) => {
+            const el = innerRef.current;
+            if (el) el.style.transform = '';
+            onMouseLeave?.(e);
+        },
+        [onMouseLeave]
+    );
+
     return (
         <StyledText
             {...props}
-            ref={ref}
+            ref={(node) => {
+                (innerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                if (typeof ref === 'function') ref(node);
+                else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+            }}
             onMouseEnter={(e) => {
                 const dir = shineDirections[Math.floor(Math.random() * shineDirections.length)];
                 e.currentTarget.setAttribute('data-shine', dir);
                 onMouseEnter?.(e);
             }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
             onAnimationEnd={(e) => {
                 e.currentTarget.removeAttribute('data-shine');
                 onAnimationEnd?.(e);
