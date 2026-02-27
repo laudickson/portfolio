@@ -4,7 +4,7 @@ import { AiFillLinkedin, AiFillGithub, AiFillMail, AiOutlinePaperClip } from 're
 import { HelloBlob } from './HelloBlob';
 import headshot from '../images/about.jpg';
 import { Bubbles, Shine, Headshot, Twirl, Chomp, LetterPop, Dang, Typing, FocusLens } from './Animation';
-import { BlackText, WhiteText, Page, Logo } from './Atoms';
+import { BlackText, WhiteText, Page, Logo, darkGlass, brightGlass } from './Atoms';
 import { useTheme } from '@emotion/react';
 import { Automagick } from './Automagick';
 
@@ -12,6 +12,11 @@ const AboutText = styled(BlackText)`
     display: flex;
     width: 600px;
     max-width: 90vw;
+    ${darkGlass}
+`;
+
+const RGGText = styled(WhiteText)`
+    ${brightGlass}
 `;
 
 const helloStrings: string[] = [
@@ -100,12 +105,12 @@ export const RGG = () => {
     return (
         <Page pageId={pageId} key={`${pageId}_page`}>
             <Logo src={process.env.PUBLIC_URL + '/images/logos/RueGiltGroupe.png'} alt="RGG" />
-            <WhiteText className="left">
+            <RGGText className="left">
                 Before that I was with <Shine href="http://www.ruegiltgroupe.com/">Rue Gilt Groupe</Shine> cranking out
                 countless of features for{' '}
                 <Bubbles link="https://www.ruelala.com/" word="Rue La La" color="#FF3065" bubbleColor="#D64066B3" /> and{' '}
                 <Bubbles link="https://www.gilt.com/" word="Gilt" color="#FFB400" bubbleColor="#E1B95BB3" />
-            </WhiteText>
+            </RGGText>
         </Page>
     );
 };
