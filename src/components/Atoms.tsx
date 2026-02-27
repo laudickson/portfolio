@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import { useChapters } from '../hooks/useChapters';
 import useOnScreen from '../hooks/useOnScreen';
 
@@ -32,7 +32,29 @@ export const Link = styled.a`
     white-space: pre;
 `;
 
-const Text = styled.div`
+const shineRight = keyframes`
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+`;
+
+const shineLeft = keyframes`
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+`;
+
+const shineDown = keyframes`
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100%); }
+`;
+
+const shineUp = keyframes`
+    from { transform: translateY(100%); }
+    to { transform: translateY(-100%); }
+`;
+
+const shineDirections = ['right', 'left', 'down', 'up'] as const;
+
+const StyledText = styled.div`
     position: relative;
     display: block;
     width: 40%;
@@ -71,10 +93,6 @@ const Text = styled.div`
             0 12px 40px 0 rgba(0, 0, 0, 0.2),
             inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
             inset 0 -1px 0 0 rgba(0, 0, 0, 0.05);
-
-        &::after {
-            transform: translateX(100%);
-        }
     }
 
     /* Shine sweep overlay */
@@ -94,8 +112,34 @@ const Text = styled.div`
             transparent 100%
         );
         transform: translateX(-100%);
-        transition: transform 0.6s ease;
         pointer-events: none;
+    }
+
+    &[data-shine='right']::after {
+        animation: ${shineRight} 0.6s ease;
+    }
+    &[data-shine='left']::after {
+        animation: ${shineLeft} 0.6s ease;
+    }
+    &[data-shine='down']::after,
+    &[data-shine='up']::after {
+        inset: 0 -50%;
+        background-image: linear-gradient(
+            30deg,
+            transparent 0%,
+            transparent 30%,
+            rgba(255, 255, 255, 0.25) 45%,
+            rgba(255, 255, 255, 0.4) 50%,
+            rgba(255, 255, 255, 0.25) 55%,
+            transparent 70%,
+            transparent 100%
+        );
+    }
+    &[data-shine='down']::after {
+        animation: ${shineDown} 0.3s ease;
+    }
+    &[data-shine='up']::after {
+        animation: ${shineUp} 0.3s ease;
     }
 
     /* Noise texture overlay */
@@ -141,6 +185,27 @@ const Text = styled.div`
         text-shadow: 1px 1px 2px black;
     }
 `;
+
+const Text = React.forwardRef<HTMLDivElement, React.ComponentProps<typeof StyledText>>(function Text(
+    { onMouseEnter, onAnimationEnd, ...props },
+    ref
+) {
+    return (
+        <StyledText
+            {...props}
+            ref={ref}
+            onMouseEnter={(e) => {
+                const dir = shineDirections[Math.floor(Math.random() * shineDirections.length)];
+                e.currentTarget.setAttribute('data-shine', dir);
+                onMouseEnter?.(e);
+            }}
+            onAnimationEnd={(e) => {
+                e.currentTarget.removeAttribute('data-shine');
+                onAnimationEnd?.(e);
+            }}
+        />
+    );
+});
 
 export const BlackText = styled(Text)`
     color: black;
