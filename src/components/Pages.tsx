@@ -195,7 +195,7 @@ export const Grubhub = () => {
                     link="https://www.grubhub.com"
                     word="Grubhub"
                     color={theme.colors.pages.grubhub}
-                    toothColor="#F44956"
+                    toothColor="#e96973"
                 />{' '}
                 for a brief time during an acquisition of a smaller company.
             </BlackText>

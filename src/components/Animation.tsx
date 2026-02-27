@@ -26,7 +26,9 @@ export const Headshot = styled.div<{ img: string; appear: boolean; popOut: boole
     width: 30%;
     margin-right: 16px;
     opacity: ${(props) => (props.appear ? 0.6 : 0)};
-    box-shadow: 0 0 8px 40px white inset, 0 0 0 0 grey;
+    box-shadow:
+        0 0 8px 40px white inset,
+        0 0 0 0 grey;
     background-image: ${(props) => (props.img ? `url(${props.img})` : 'none')};
     background-repeat: no-repeat;
     background-size: cover;
@@ -154,7 +156,9 @@ export const Shine = styled(Link)`
         background: #fff;
         content: '';
         opacity: 0;
-        transition: opacity 0.3s, transform 0.5s;
+        transition:
+            opacity 0.3s,
+            transform 0.5s;
     }
 
     &::before {
@@ -270,53 +274,96 @@ const ChompContainer = styled.div`
     display: inline-block;
 `;
 
-const Tooth = styled.div<{ color: string }>`
+const BiteGroup = styled.div<{ x: number; y: number; rot: number }>`
     position: absolute;
-    height: 20px;
-    width: 20px;
-    border-radius: 20px;
-    background: ${(props) => props.color};
+    z-index: 2;
     pointer-events: none;
+    width: 56px;
+    height: 56px;
+    left: -14px;
+    top: -14px;
+    transform: ${(props) => `translate(${props.x}px, ${props.y}px) rotate(${props.rot}deg)`};
+`;
 
-    &.bite1 {
-        left: 34px;
-        top: 15px;
+const JawTop = styled.div<{ color: string; delay: number }>`
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    top: 0;
+    background: color-mix(in srgb, ${(props) => props.color} 65%, black);
+    border-radius: 50% 50% 0 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: snapTop 0.3s ease-out forwards;
+    animation-delay: ${(props) => props.delay}ms;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 10%;
+        bottom: -40%;
+        width: 80%;
+        height: 70%;
+        background: ${(props) => props.color};
+        clip-path: polygon(5% 0%, 16% 100%, 27% 0%, 37% 0%, 48% 100%, 60% 0%, 70% 0%, 82% 100%, 93% 0%);
     }
-    &.bite2 {
-        left: 29px;
-        top: 29px;
-    }
-    &.bite3 {
-        left: 19px;
-        top: 38px;
-    }
-    &.bite4 {
-        left: 4px;
-        top: 31px;
-    }
-    &.bite5 {
-        left: -6px;
-        top: 15px;
+
+    @keyframes snapTop {
+        0% {
+            transform: translateY(-10px);
+            opacity: 0;
+        }
+        30% {
+            opacity: 1;
+        }
+        80% {
+            transform: translateY(-2px);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-4px);
+            opacity: 1;
+        }
     }
 `;
 
-const Bite = styled.div<{ color: string; x: number; y: number; rot: number; eat: number }>`
+const JawBottom = styled.div<{ color: string; delay: number }>`
     position: absolute;
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    background: color-mix(in srgb, ${(props) => props.color} 65%, black);
+    border-radius: 0 0 50% 50%;
     opacity: 0;
-    z-index: 2;
-    pointer-events: none;
-    left: -9px;
-    top: -9px;
-    height: 40px;
-    width: 40px;
-    border-radius: 30px;
-    background: ${(props) => props.color};
-    transform: ${(props) => `translate(${props.x}px, ${props.y}px) rotate(${props.rot}deg)`};
-    animation: chomp 0.3s forwards ease-out;
-    animation-delay: ${(props) => props.eat}ms;
+    transform: translateY(10px);
+    animation: snapBottom 0.3s ease-out forwards;
+    animation-delay: ${(props) => props.delay}ms;
 
-    @keyframes chomp {
+    &::after {
+        content: '';
+        position: absolute;
+        left: 10%;
+        top: -40%;
+        width: 80%;
+        height: 70%;
+        background: ${(props) => props.color};
+        clip-path: polygon(5% 100%, 16% 0%, 27% 100%, 37% 100%, 48% 0%, 60% 100%, 70% 100%, 82% 0%, 93% 100%);
+    }
+
+    @keyframes snapBottom {
+        0% {
+            transform: translateY(10px);
+            opacity: 0;
+        }
+        30% {
+            opacity: 1;
+        }
+        80% {
+            transform: translateY(2px);
+            opacity: 1;
+        }
         100% {
+            transform: translateY(4px);
             opacity: 1;
         }
     }
@@ -354,28 +401,25 @@ const ChompLink = styled(Link)<{ color: string }>`
 `;
 
 export const Chomp = ({ link, word, color, toothColor }: Link & { toothColor?: string }) => {
-    const bites = [...Array.from({ length: 5 }, (_, i) => i + 1)];
     const [bite, setBite] = React.useState(false);
+    const tc = toothColor ?? color ?? '';
 
     return (
         <ChompContainer onMouseEnter={() => setBite(true)} onMouseLeave={() => setBite(false)}>
             {bite && (
                 <>
-                    <Bite color={toothColor ?? color ?? ''} x={-4} y={1} rot={323} eat={500}>
-                        {bites.map((bite) => (
-                            <Tooth key={Math.random()} className={`bite${bite}`} color={toothColor ?? color ?? ''} />
-                        ))}
-                    </Bite>
-                    <Bite color={toothColor ?? color ?? ''} x={170} y={4} rot={51} eat={750}>
-                        {bites.map((bite) => (
-                            <Tooth key={Math.random()} className={`bite${bite}`} color={toothColor ?? color ?? ''} />
-                        ))}
-                    </Bite>
-                    <Bite color={toothColor ?? color ?? ''} x={87} y={60} rot={171} eat={1200}>
-                        {bites.map((bite) => (
-                            <Tooth key={Math.random()} className={`bite${bite}`} color={toothColor ?? color ?? ''} />
-                        ))}
-                    </Bite>
+                    <BiteGroup x={-4} y={1} rot={323}>
+                        <JawTop color={tc} delay={500} />
+                        <JawBottom color={tc} delay={500} />
+                    </BiteGroup>
+                    <BiteGroup x={170} y={25} rot={51}>
+                        <JawTop color={tc} delay={750} />
+                        <JawBottom color={tc} delay={750} />
+                    </BiteGroup>
+                    <BiteGroup x={87} y={60} rot={171}>
+                        <JawTop color={tc} delay={1200} />
+                        <JawBottom color={tc} delay={1200} />
+                    </BiteGroup>
                 </>
             )}
             <ChompLink href={link} color={color ?? ''} target="_blank" rel="noreferrer" className={bite ? 'eat' : ''}>
