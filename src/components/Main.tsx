@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { About, Alnylam, RGG, Grubhub, LevelUp, Amalgam, Launch, Photography, Contact } from './Pages';
+import { About, Alnylam, RGG, Grubhub, LevelUp, Amalgam, Launch, Photography, Contact } from './pages';
 
 const MainContainer = styled.div`
   height: 100%;

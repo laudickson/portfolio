@@ -307,6 +307,48 @@ export const brightGlass = css`
     }
 `;
 
+export const frostedGlass = css`
+    backdrop-filter: blur(28px) saturate(1.1);
+    -webkit-backdrop-filter: blur(28px) saturate(1.1);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow:
+        0 8px 32px 0 rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 0 rgba(0, 0, 0, 0.03);
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        box-shadow:
+            0 12px 40px 0 rgba(0, 0, 0, 0.14),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+            inset 0 -1px 0 0 rgba(0, 0, 0, 0.03);
+    }
+
+    &::before {
+        opacity: 0.22;
+        mix-blend-mode: soft-light;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        background-size: 180px 180px;
+    }
+
+    &::after {
+        background: linear-gradient(
+            120deg,
+            transparent 0%,
+            transparent 35%,
+            rgba(255, 255, 255, 0.06) 48%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0.06) 52%,
+            transparent 65%,
+            transparent 100%
+        );
+    }
+`;
+
 export const Page = ({ children, pageId }: PageProps) => {
     const { chapters, setChapters } = useChapters();
     const page = chapters.refs[pageId];
