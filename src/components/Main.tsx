@@ -16,7 +16,7 @@ const MainContainer = styled.div`
 
 export const Main = () => {
   return (
-    <MainContainer>
+    <MainContainer id="main-scroll">
       <About />
       <Alnylam />
       <RGG />

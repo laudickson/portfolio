@@ -42,18 +42,32 @@ export const Chapter = styled.a`
   }
 `;
 
+const CHAPTER_HEIGHT = 60;
+
 const CurrentChapter = styled.span`
   position: absolute;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  top: 50%;
+  width: 200px;
+  height: ${CHAPTER_HEIGHT}px;
   color: white;
-  min-width: 200px;
   transform: rotate(270deg) translateY(-70px);
-  opacity: 1
-  transition: opacity .2s ease-in .2s, transform .1s linear;
-  line-height: 60px;
+  opacity: 1;
+  transition: opacity .2s ease-in .2s;
+  line-height: ${CHAPTER_HEIGHT}px;
   cursor: default;
+  overflow: hidden;
+`;
+
+const ChapterStrip = styled.div`
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+
+  span {
+    flex-shrink: 0;
+    height: ${CHAPTER_HEIGHT}px;
+    text-align: center;
+  }
 `;
 
 const NavContainer = styled.div`
@@ -99,7 +113,26 @@ const NavContainer = styled.div`
 
 export const SideNav = () => {
   const { chapters, setChapters } = useChapters();
-  const currentChapterRef = React.useRef<HTMLSpanElement>(null);
+  const chapterStripRef = React.useRef<HTMLDivElement>(null);
+  const chapterNames = Object.values(chapters.refs);
+
+  React.useEffect(() => {
+    const scrollContainer = document.getElementById('main-scroll');
+    if (!scrollContainer) return;
+
+    const onScroll = () => {
+      if (!chapterStripRef.current) return;
+      const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
+      const progress = scrollTop / (scrollHeight - clientHeight);
+      const offset = progress * (chapterNames.length - 1) * CHAPTER_HEIGHT;
+      chapterStripRef.current.style.transform = `translateY(-${offset}px)`;
+    };
+
+    scrollContainer.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    return () => scrollContainer.removeEventListener('scroll', onScroll);
+  }, [chapterNames.length]);
 
   const goToChapter = (e: React.MouseEvent, chapter: ChapterType ) => {
     e.preventDefault;
@@ -121,8 +154,12 @@ export const SideNav = () => {
           </Chapter>
         )}
       </Chapters>
-      <CurrentChapter className='current-chapter' ref={ currentChapterRef }>
-        { chapters.current }
+      <CurrentChapter className='current-chapter'>
+        <ChapterStrip ref={chapterStripRef}>
+          {chapterNames.map(chapter => (
+            <span key={chapter.title}>{chapter.title}</span>
+          ))}
+        </ChapterStrip>
       </CurrentChapter>
     </NavContainer>
   );
